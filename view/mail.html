@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> PHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap5/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/styler.css" type="text/css">
+    
+
+</head>
+<body>
+
+
+
+
+    <div>
+        <img class="mx-auto d-block" src="img/zx0029m.png" width="150" height="150">
+    </div>
+    
+    
+    <div class="container-lg">
+        <form method="post"  action="mailSend.php">
+    
+            <input type="text" name="mailfor" placeholder="Від кого:" value=""  class="form-control-sm mt-2" >
+            <div class="text-danger small"><?=$error_mailfor?></div>
+    
+            <input type="text" name="mailfrom" placeholder="Кому:" value=""  class="form-control-sm mt-2">
+            <div class="text-danger small"><?=$error_mailfrom?></div>
+    
+            <input type="text" name="temamail" value="" placeholder="Тема повідомлення" class="form-control mt-3">
+            <div class="text-danger small"><?=$error_temamail?></div>
+    
+    
+            <textarea rows="8" name="textmail" placeholder="Текст повідомлення" class="form-control mt-3"><?=$_SESSION['textmail']?></textarea>
+            <div class="text-danger small"><?=$error_textmail?></div>
+    
+            <p><input type="radio" name="mailServerSend"  value="1" class="mt-3"> Локальний сервер </p>
+            <p><input type="radio" name="mailServerSend" checked value="2"> Віддалений сервер</p>
+            <div class="text-danger small"><?=$error_mailServerSend?></div>
+    
+            <input type="submit" value="Відправити" class="btn btn-primary">
+    
+        </form>
+    </div>
+
+     
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <script src="js/bootstrap5js/bootstrap.min.js"></script>
+
+</body>
+</html>

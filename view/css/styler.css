@@ -1,0 +1,17 @@
+body {
+    background-color: #dcdfe4;
+}
+
+.navbar{
+	background: #2e323a;
+}
+.navbar ul li a{
+	color: #fff;
+}
+.navbar ul li a:hover{
+	background: #61666e;
+
+}
+.navbar .navbar-brand{
+	color: #fff;
+}
