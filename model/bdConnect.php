@@ -1,17 +1,17 @@
 <?php
 
-namespace model;
 
-class bdConnect extends model
-{
-    protected $hostname = DB_HOSTNAME;
+class bdConnect {
+    
 
-   public function __construct()
-   {
-        echo $this->proverka1;
-        echo $this->masiv;
+    public function __construct() {
 
-        $mysql = @new \mySqli (DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT);
+        $mysql =  @new \mySqli (DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT);
+        self::infoUsers($mysql);
+    }
+
+
+    public static function connectBazaEroor($mysql) {
 
        if ($mysql !== null )
        {
@@ -28,55 +28,52 @@ class bdConnect extends model
            }
        } else { echo 'ERROR. Перевірка підключення бази непройдена!'; }
 
-         $mysql -> close();
+        //  $mysql -> close();
+        
+    }
+    
+    
+    
+   
+    function infoUsers($mysql) {
+        
+      
+         self::connectBazaEroor($mysql);
+         
+    
+         $resultat = $mysql->query("SELECT * FROM  `oc_users` ");
+          
+         while ($row_user = $resultat->fetch_assoc()) {
+            $i = 0;
+            $i = $i + 1;
+            echo $i . ' '.     '<b>id: </b>' . $row_user['user_id'] . '.'. 
+                        '<b>User name: </b>' . $row_user['username'] . '.'.
+                       '<b>First name: </b>' . $row_user['firstname']. '.'.
+                        '<b>Last name: </b>' . $row_user['lastname']. '.'.
+                            '<b>email: </b>' . $row_user['email'] . '.'.
+                       //'<b>password: </b>' . $row_user['key'] . '.'.
+                             '<b>data: </b>' . $row_user['date_add'] . '.' . '<br>';
+         }
+        
+         $mysql->close();
+    }
+    
+    
+    
 
-   }
-//
-//
-//   public function mailSends($masiv){
-//    $mysql = new mysqli("localhost", "root", "root", "crmTest", "3306");
-//
-//    $mysql->query("INSERT INTO `mail_sends` (`id`, `mailfor`,`mailfrom`,`temamail`,'textmail',`date_add`)
-//                         VALUES (null , '$masiv[mailfor]', $masiv[mailfrom], '$masiv[temamail]', '$masiv[textmail]'   CURRENT_TIMESTAMP) ");
-//    $mysql->close();
-//   }
-//
-// //Інформація про користувачів
-// function infoUsers()
-// {
-//    global $mysql;
-//    //перевірка підключення
-//     conectBaza();
-//
-//    //вивід інформації про користувачів
-//    $resultat = $mysql->query("SELECT * FROM  `oc_users` ");
-//    while ($row_user = $resultat->fetch_assoc()) {
-//        $i = 0;
-//        $i = $i + 1;
-//        echo $i . ' ';
-//        echo '<b>id: </b>' . $row_user['id'] . '.';
-//        echo '<b>name: </b>' . $row_user['name'] . '.';
-//        echo '<b>email: </b>' . $row_user['email'] . '.';
-//        //echo '<b>password:</b>' . $row_user['key'] . '.';
-//        echo '<b>data: </b>' . $row_user['date_add'] . '.' . '<br>';
-//    }
-//    $mysql->close();
-// }
-//
-//
-// //Реєстрація користувачів
-// function registrationUser()
-// {
-//    $mysql = new mysqli("localhost", "root", "root", "crmTest", "3306");
-//
-//    $oc_name=1;
-//    $oc_email=1;
-//    $oc_key=1;
-//    //поля id, date add необовязкові
-//    $mysql->query("INSERT INTO `oc_users` (`id`, `name`,`email`,`key`,`date_add`)
-//                         VALUES (null , '$oc_name', '$oc_email', '$oc_key', CURRENT_TIMESTAMP) ");
-//    $mysql->close();
-// }
+    function registrationUser($mysql, $oc_name, $oc_email, $oc_key) {
+        
+        $mysql = new mysqli("localhost", "root", "root", "crmTest", "3306");
+        
+       
+        $mysql->query("INSERT INTO `oc_users` (`id`, `name`,`email`,`key`,`date_add`)
+                        VALUES (null , '$oc_name', '$oc_email', '$oc_key', CURRENT_TIMESTAMP) ");
+        $mysql->close();
+    }
+
+
+
 
 
 }
+?>
