@@ -1,11 +1,12 @@
 <?php
 
+namespace Controller\Crm\Account;
+
 class Login {
     
 
     public function __construct() {
         
-        self::index();
     }
     
     

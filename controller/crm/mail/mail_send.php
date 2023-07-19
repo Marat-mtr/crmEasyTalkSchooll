@@ -1,5 +1,6 @@
 <?php
 
+namespace Controller\Crm\Mail;
 
 class mailSend {
     
@@ -16,3 +17,4 @@ class mailSend {
 
 
 }
+?>

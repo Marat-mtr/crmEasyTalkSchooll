@@ -1,7 +1,8 @@
 <?php
 
+namespace Model\Crm;
 
-class bdConnect {
+class BdConnect {
     
 
     public function __construct() {
