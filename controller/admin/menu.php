@@ -2,20 +2,11 @@
 
 namespace Controller\Admin;
 
+class Menu {
 
-class Login {
-
-    
     public function __construct() {
-    
+        
     }
-
-
-    
-    public static function index() {
-    
-    }
-
 
 
 
