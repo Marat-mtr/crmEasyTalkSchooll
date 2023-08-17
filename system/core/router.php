@@ -64,10 +64,10 @@ class Router {
 
         }else if($url[0] == 'crm') {    
                    
-            new Crm;           
+                      
             if(isset($url[1])) {
                 $urlroute = $url[1]; 
-                Crm::metod($urlroute);
+                
             }
     
        
