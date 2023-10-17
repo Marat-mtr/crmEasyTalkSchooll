@@ -7,42 +7,35 @@
 class Router { 
 
    
-    public function __construct() {
-
-        spl_autoload_register(function($class){
-
-            if($class == 'Controller' || $class == 'Model') {
-                $class = str_replace('\\', '/', DIR_SYSTEM. 'core/'. strtolower($class). '.php');
-                require $class;
-            }
-
-
-            if($class == 'Common') {
-                $class = str_replace('\\', '/', DIR_APPLICATION. 'common/'.  strtolower($class). '.php');
-                require $class;
-            }
-
-            if($class == 'Crm') {
-                $class = str_replace('\\', '/', DIR_APPLICATION. 'crm/'.  strtolower($class). '.php');
-                require $class;
-            }
-
-            if($class == 'Admin' || $class == 'Login') {
-                $class = str_replace('\\', '/', DIR_APPLICATION. 'admin/'.  strtolower($class). '.php');
-                require $class;
-            }
-
-            if($class == 'bdConnect') {
-                $class = str_replace('\\', '/', DIR_MODEL.  strtolower($class). '.php');
-                require $class;
-            }
-
-
-        });
-          
-        self::index(); 
-        
-    }
+//    public function __construct() {
+//
+//
+//        spl_autoload_register(function($class){
+//
+//            if($class == 'CrmMain') {
+//                $class = str_replace('\\', '/', DIR_APPLICATION. 'crm/'.  strtolower($class). '.php');
+//                require $class;
+//            }
+//
+//            if($class == 'Users') {
+//                $class = str_replace('\\', '/', DIR_APPLICATION. 'crm/account/'.  strtolower($class). '.php');
+//                require $class;
+//                echo 'users';
+//            }
+//
+//            if ($class == 'UserModel') {
+//                $class = str_replace('\\', '/', DIR_APPLICATION. 'crm/account/'.  strtolower($class). '.php');
+//                require $class;
+//            }
+//
+//
+//
+//        });
+//
+//
+//       self::index();
+//
+//    }
 
 
 
@@ -56,20 +49,16 @@ class Router {
 
         if($url[0] == 'common' || $url == ''){
 
-            Common::index();
+            $a = new Common();
+            $a -> index();
             if(isset($url[1])){
                 echo '<br> action: <b> '. $url[1].  '<b>';        
             }
         
 
-        }else if($url[0] == 'crm') {    
-                   
-                      
-            if(isset($url[1])) {
-                $urlroute = $url[1]; 
-                
-            }
-    
+        }else if($url[0] == 'CrmMain') {
+            new CrmMain();
+
        
         }else if($url[0] == 'admin') {
             
@@ -97,6 +86,9 @@ class Router {
 
 
 
+    public function queryUrl(){
+
+    }
 
 
 
