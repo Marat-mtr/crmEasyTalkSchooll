@@ -2,6 +2,8 @@
 
 //namespace Model\Crm;
 
+use system\library\Model;
+
 class ConnectBD extends Model{
     
 

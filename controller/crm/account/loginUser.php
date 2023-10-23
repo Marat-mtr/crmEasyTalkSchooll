@@ -2,16 +2,20 @@
 
 //namespace Controller\Crm\Account;
 
-class crmLoginUser extends Controller{
+use system\core\Debuger;
+
+class LoginUser extends Users {
     
 
     public function __construct() {
-        
+        echo '<br>' . ' - require class LoginUser.  actions: __construct.  (exts Controller).' . '<br>';
+
     }
     
     
     
-    public static function index() {
+        echo '<br>' . ' - require class LoginUser. (ext Controller). actions: index' . '<br>';
+
         
     }
 

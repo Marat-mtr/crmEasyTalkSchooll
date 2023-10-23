@@ -1,31 +1,36 @@
 <?php
 
-class Model{
+namespace system\core;
+use system\library\mysqli;
+
+class odel
+{
     protected $mysqls;
 
-    public function __construct() {
+    public function __construct()
+    {
 
     }
 
 
-    public function connectBD() {
+    public function connectBD()
+    {
         $mysqls = new mysqli(DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT);
 
         self::connectBDError($mysqls);
 
-        $this->mysqls= $mysqls->query("SELECT * FROM `est_users`");
+        $this->mysqls = $mysqls->query("SELECT * FROM `est_users`");
 
         return $this;
     }
 
 
-    public static function connectBDError($mysql) {
+    public static function connectBDError($mysql)
+    {
 
 
-        if ($mysql !== null )
-        {
-            if ($mysql->connect_error)
-            {
+        if ($mysql !== null) {
+            if ($mysql->connect_error) {
                 echo '<b>1)Проблема з підключенням Бази даних. Номер помилки:</b>' . $mysql->connect_errno, '<br>';
                 echo '<b>2)Проблема з підключенням Бази даних. Помилка:</b>' . $mysql->connect_error, '<br>';
             } else if ($mysql->error) {
@@ -35,20 +40,12 @@ class Model{
             } else {
                 echo '<b>Connect Baza - OK!</b>', '<br>';
             }
-        } else { echo 'ERROR. Перевірка підключення бази непройдена!'; }
+        } else {
+            echo 'ERROR. Перевірка підключення бази непройдена!';
+        }
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
 }
+
 ?>

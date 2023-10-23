@@ -1,15 +1,26 @@
 <?php
 
-require_once 'library/utf8.php';
-require_once 'vendor/autoload.php';
+require 'core/framework.php';
+
+require 'core/controller.php';
+
+require 'library/libRoute.php';
+
+
+require 'core/model.php';
+require 'core/router.php';
+require 'core/debugger.php';
 
 
 
 
 
+$a = new Router();
+//$a ->index();
 
-require_once 'core/router.php';
-new Router();
+
+
+
 
 
 

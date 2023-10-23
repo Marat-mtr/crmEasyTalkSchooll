@@ -1,95 +1,64 @@
 <?php
-
-
 /**
  * Роутінг
  */
-class Router { 
+class Router extends LibRoute
+{
+    protected $url;
+    public function __construct()
+    {
+        $this->index();
+        $require_file = str_replace('\\', '/', DIR_APPLICATION . strtolower($this->url) . '.php');
+        require $require_file;
+        new CrmHome();
 
-   
-//    public function __construct() {
-//
-//
-//        spl_autoload_register(function($class){
-//
-//            if($class == 'CrmMain') {
-//                $class = str_replace('\\', '/', DIR_APPLICATION. 'crm/'.  strtolower($class). '.php');
-//                require $class;
-//            }
-//
-//            if($class == 'Users') {
-//                $class = str_replace('\\', '/', DIR_APPLICATION. 'crm/account/'.  strtolower($class). '.php');
-//                require $class;
-//                echo 'users';
-//            }
-//
-//            if ($class == 'UserModel') {
-//                $class = str_replace('\\', '/', DIR_APPLICATION. 'crm/account/'.  strtolower($class). '.php');
-//                require $class;
-//            }
-//
-//
-//
-//        });
-//
-//
-//       self::index();
-//
-//    }
+        spl_autoload_register(function ($class)
+        {
+
+        });
+
+    }
 
 
-
-    public static function index() {
-
-        
+    public function index()
+    {
         $url = $_SERVER['QUERY_STRING'];
         $url = explode('/', $url);
-        
-       
 
-        if($url[0] == 'common' || $url == ''){
-
-            $a = new Common();
-            $a -> index();
-            if(isset($url[1])){
-                echo '<br> action: <b> '. $url[1].  '<b>';        
-            }
-        
-
-        }else if($url[0] == 'CrmMain') {
-            new CrmMain();
-
-       
-        }else if($url[0] == 'admin') {
-            
-            Admin::index();
-            if(isset($url[1]) && $url[1] == 'login') {
-                echo '<br>action:'. $url[1]. '';
-            }
-            
-    
-        }else{
-           
-            Common::index();
-            echo '<br> Некоректне посилання! <br>';
+        if ($url[0] == 'common' || $url[0] == '')
+        {
+            self::routeCommon();
+            $this->url = self::$routeCommon['path']['home'];
+            return $this->url;
         }
 
 
 
-        
 
-        
-        
+        if ($url[0] == 'crm')
+               {
+                   self::routeCrm();
+                   $this->url = self::$routeCrm['path'][$url[1]];
+                   return $this->url;
+
+               } else { echo 'not found';}
+
+
+//                   if ($url[0] == 'admin')
+//                      {
+//
+//                      } else {
+//                              self::routeCommon();
+//                              $this->url = self::$routeCommon['home'];
+//                              return $this->url;
+//                              echo '<br> + Некоректне посилання! <br>';
+//                             }
+
     }
 
-
-
-
-
-    public function queryUrl(){
-
-    }
 
 
 
 }
+
+
