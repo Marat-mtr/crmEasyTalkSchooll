@@ -1,6 +1,6 @@
 <?php
 
-class LibRoute
+class LibRouteDefult
 {
     protected static $routeAdmin;
     protected static $routeCommon;
@@ -54,8 +54,8 @@ class LibRoute
             'path' =>
                         [ '' => 'crm/crmhome',
                           'home' => 'crm/crmhome',
-                          'loginUser' => '',
-                          'registUser' => ''
+                          'loginUser' => 'loginUserrr',
+                          'registUser' => 'registration user'
                         ],
 
               'controller' =>

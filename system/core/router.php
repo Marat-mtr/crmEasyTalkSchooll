@@ -2,7 +2,7 @@
 /**
  * Роутінг
  */
-class Router extends LibRoute
+class Router extends LibRouteDefult
 {
     protected $url;
     public function __construct()
@@ -38,7 +38,16 @@ class Router extends LibRoute
         if ($url[0] == 'crm')
                {
                    self::routeCrm();
-                   $this->url = self::$routeCrm['path'][$url[1]];
+
+                   foreach(self::$routeCrm['path'] as $key => $value)
+                   {
+                      if($url[1] == $key)
+                      {
+                        echo '<br>' . $value;
+                      }
+                   }
+                  
+                   $this->url = self::$routeCrm['path']['home'];
                    return $this->url;
 
                } else { echo 'not found';}
