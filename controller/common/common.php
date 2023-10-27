@@ -1,6 +1,5 @@
 <?php
 
-//use system\core\Controller;
 
 class Common extends Controller {
 

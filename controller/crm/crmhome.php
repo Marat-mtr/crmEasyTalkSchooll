@@ -1,20 +1,17 @@
 <?php
 
-
-//use system\core\Controller;
-
-class CrmHome {
+class CrmHome extends Controller {
 
 
     public function __construct() {
-        echo ' - require class CrmHome';
+        echo '<br> - require class CrmHome. action: construct';
 
     }
 
 
 
-    public static function index() {
-        echo ' -require class CrmHome, action: index';
+    public function index() {
+        echo '<br> - require class CrmHome, action: index';
     }
 
 

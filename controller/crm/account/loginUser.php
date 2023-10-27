@@ -14,6 +14,7 @@ class LoginUser extends Users {
     
     
     
+    public function indexss() {
         echo '<br>' . ' - require class LoginUser. (ext Controller). actions: index' . '<br>';
 
         

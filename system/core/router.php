@@ -2,68 +2,104 @@
 /**
  * Роутінг
  */
-class Router extends LibRouteDefult
-{
-    protected $url;
-    public function __construct()
-    {
-        $this->index();
-        $require_file = str_replace('\\', '/', DIR_APPLICATION . strtolower($this->url) . '.php');
-        require $require_file;
-        new CrmHome();
+class Router {
 
-        spl_autoload_register(function ($class)
-        {
+    public function __construct() {
 
+
+
+        spl_autoload_register(function ($class) {
+
+            $dirCore = str_replace('\\', '/', DIR_CORE. strtolower($class) . '.php');
+            if (is_file($dirCore)) {
+                require $dirCore;
+            }
+
+            $dirLib = str_replace('\\', '/', DIR_LIBRARY. strtolower($class) . '.php');
+            if (is_file($dirLib)) {
+                require $dirLib;
+            }
         });
 
-    }
+        spl_autoload_extensions('.php');
 
 
-    public function index()
-    {
+
         $url = $_SERVER['QUERY_STRING'];
         $url = explode('/', $url);
 
-        if ($url[0] == 'common' || $url[0] == '')
-        {
-            self::routeCommon();
-            $this->url = self::$routeCommon['path']['home'];
-            return $this->url;
-        }
+
+        if ($url[0] == 'common') {
+
+            echo "controller common";
+
+
+        }else if ($url[0] == 'crm') {
+
+
+            Libroutecrm::routeCrm();
+            foreach(Libroutecrm::$routeCrm['path'] as $key => $value) {
+                if(isset($url[1]) == $key) {
+                    $urls = $value;
+                }
+            }
+
+            foreach (Libroutecrm::$routeCrm['controller'] as $key => $value) {
+                if (isset($url[1]) == $key) {
+                    $requireController = $value;
+                }
+            }
+
+            foreach (Libroutecrm::$routeCrm['action'] as $key => $value) {
+                if (isset($url[1]) == $key) {
+                    $requireAction = $value;
+                }
+            }
 
 
 
-
-        if ($url[0] == 'crm')
-               {
-                   self::routeCrm();
-
-                   foreach(self::$routeCrm['path'] as $key => $value)
-                   {
-                      if($url[1] == $key)
-                      {
-                        echo '<br>' . $value;
-                      }
-                   }
-                  
-                   $this->url = self::$routeCrm['path']['home'];
-                   return $this->url;
-
-               } else { echo 'not found';}
+        } else if ($url[0] == 'admin') {
 
 
-//                   if ($url[0] == 'admin')
-//                      {
-//
-//                      } else {
-//                              self::routeCommon();
-//                              $this->url = self::$routeCommon['home'];
-//                              return $this->url;
-//                              echo '<br> + Некоректне посилання! <br>';
-//                             }
+
+            LibrouteAdmin::routeAdmin();
+            foreach (LibRouteAdmin::$routeAdmin['path'] as $key => $value) {
+                if (isset($url[1]) == $key) {
+                    $urls = $value;
+
+                }
+            }
+
+            foreach (LibRouteAdmin::$routeAdmin['controller'] as $key => $value) {
+                if (isset($url[1]) == $key) {
+                    $requireController = $value;
+                }
+            }
+
+            foreach (LibRouteAdmin::$routeAdmin['action'] as $key => $value) {
+                if (isset($url[1]) == $key) {
+                    $requireAction = $value;
+                }
+            }
+
+
+        } else {
+                new NotFound();
+            }
+
+
+
+        $require_file = str_replace('\\', '/', DIR_APPLICATION . strtolower($urls) . '.php');
+        require $require_file;
+
+        $a =  new $requireController();
+        $a -> $requireAction();
+
+
+
 
     }
+ 
 
 
 

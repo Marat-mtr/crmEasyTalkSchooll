@@ -2,6 +2,7 @@
 
 class configBD
 {
+
     public static function constantsBD()
     {
         // DB

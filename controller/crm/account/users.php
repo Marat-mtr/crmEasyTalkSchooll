@@ -6,11 +6,6 @@
 
 class Users extends Controller {
 
-    public function __construct(){
-        $a = new UsersModel();
-        $a -> infoUsers();
-    }
-
 
     public function __construct(){
         echo '<br>' . ' - require class Users.  actions: __construct.  (exts Controller).' . '<br>';
@@ -18,6 +13,7 @@ class Users extends Controller {
     }
 
 
+    public function indexer() {
         echo '<br>' . ' - require class Users.  action: index.   (ext Controller). ' . '<br>';
 
 

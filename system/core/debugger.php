@@ -4,6 +4,7 @@ class Debugger
 {
     public function __construct()
     {
+        echo 'debuger';
     }
 
 
