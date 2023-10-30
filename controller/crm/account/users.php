@@ -19,6 +19,10 @@ class Users extends Controller {
 
     }
 
+    public function loginUser () {
+        echo ' - req loginUser';
+    }
+
 
 
 

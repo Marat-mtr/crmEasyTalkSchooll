@@ -10,13 +10,16 @@ class Common extends Controller {
 
 
     
-    public static function index() {
+    public function index() {
         
     }
 
 
 
-    public static function main() {
+    public function notFound() {
+
+        $this->index();
+        echo '<br> Некоректне посилання!';
         
     }
 

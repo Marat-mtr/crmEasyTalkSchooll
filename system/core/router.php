@@ -4,9 +4,9 @@
  */
 class Router {
 
+    //private $urls = '';
+
     public function __construct() {
-
-
 
         spl_autoload_register(function ($class) {
 
@@ -24,75 +24,91 @@ class Router {
         spl_autoload_extensions('.php');
 
 
-
         $url = $_SERVER['QUERY_STRING'];
         $url = explode('/', $url);
 
 
-        if ($url[0] == 'common') {
+        if ($url[0] == 'common' || $url[0] == '') {
 
-            echo "controller common";
-
-
-        }else if ($url[0] == 'crm') {
-
-
-            Libroutecrm::routeCrm();
-            foreach(Libroutecrm::$routeCrm['path'] as $key => $value) {
-                if(isset($url[1]) == $key) {
+            LibRouteCommon::routeCommon();
+            foreach (LibRouteCommon::$routeCommon['path'] as $key => $value) {
+                if (!empty($url[1] && $url[1] == $key)) {
                     $urls = $value;
                 }
             }
 
-            foreach (Libroutecrm::$routeCrm['controller'] as $key => $value) {
-                if (isset($url[1]) == $key) {
+            foreach (LibRouteCommon::$routeCommon['controller'] as $key => $value) {
+                if (!empty($url[1]) && $url[1] == $key) {
                     $requireController = $value;
                 }
             }
 
-            foreach (Libroutecrm::$routeCrm['action'] as $key => $value) {
-                if (isset($url[1]) == $key) {
+            foreach (LibRouteCommon::$routeCommon['action'] as $key => $value) {
+                if (!empty($url[1]) && $url[1] == $key) {
+                    $requireAction = $value;
+                }
+            }
+
+        }else if ($url[0] == 'crm') {
+
+            LibRouteCrm::routeCrm();
+            foreach(LibRouteCrm::$routeCrm['path'] as $key => $value) {
+                if(!empty($url[1]) && $url[1] == $key) {
+                    $urls = $value;
+                }
+            }
+
+            foreach (LibRouteCrm::$routeCrm['controller'] as $key => $value) {
+                if (!empty($url[1]) && $url[1] == $key) {
+                    $requireController = $value;
+                }
+            }
+
+            foreach (LibRouteCrm::$routeCrm['action'] as $key => $value) {
+                if (!empty($url[1]) && $url[1] == $key) {
                     $requireAction = $value;
                 }
             }
 
 
-
         } else if ($url[0] == 'admin') {
 
-
-
-            LibrouteAdmin::routeAdmin();
+            LibRouteAdmin::routeAdmin();
             foreach (LibRouteAdmin::$routeAdmin['path'] as $key => $value) {
-                if (isset($url[1]) == $key) {
-                    $urls = $value;
-
+                if (!empty($url[1]) && $url[1] == $key) {
+                    $url = $value;
                 }
             }
 
             foreach (LibRouteAdmin::$routeAdmin['controller'] as $key => $value) {
-                if (isset($url[1]) == $key) {
+                if (!empty($url[1]) && $url[1] == $key) {
                     $requireController = $value;
                 }
             }
 
             foreach (LibRouteAdmin::$routeAdmin['action'] as $key => $value) {
-                if (isset($url[1]) == $key) {
+                if (!empty($url[1]) && $url[1] == $key) {
                     $requireAction = $value;
                 }
             }
 
-
         } else {
-                new NotFound();
-            }
 
+            LibRouteCommon::routeCommon();
+            $url = LibRouteCommon::$routeCommon['path']['notFound'];
+            $requireController = LibRouteCommon::$routeCommon['controller']['notFound'] ;
+            $requireAction = LibRouteCommon::$routeCommon['action']['notFound'];
+        }
 
 
         $require_file = str_replace('\\', '/', DIR_APPLICATION . strtolower($urls) . '.php');
-        require $require_file;
+        if(isset($require_file)) {
+            require $require_file;
+        }
 
-        $a =  new $requireController();
+        echo Debugger::debug($requireController);
+        echo Debugger::debug($requireAction);
+        $a = new $requireController();
         $a -> $requireAction();
 
 

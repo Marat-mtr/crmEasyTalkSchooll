@@ -1,9 +1,7 @@
 <?php
 
-class LibRouteDefult
-{
-    protected static $routeCommon;
-
+class LibRouteCommon {
+    public static $routeCommon;
 
 
     public static function routeCommon()
@@ -12,31 +10,33 @@ class LibRouteDefult
 
             'path' =>
                      [ '' => 'common/common',
-                       'home' => 'crm/crmhome',
+                       'home' => 'common/common',
+                       'notFound' => 'common/common'
                      ],
 
             'controller' =>
-                     [ '' => 'index',
-                       'home' => '',
-                     ],
+                           [
+                               '' => 'common',
+                               'home' => 'common',
+                               'notFound' => 'common'
+                           ],
 
             'action' =>
-                       [ '' => 'index',
-                        'home' => 'index',
+                       [
+                           '' => 'index',
+                           'home' => 'index',
+                           'notFound' => 'notFound'
                        ],
 
             'model' =>
-                [
+                      [
 
-                ],
-            ];
+                      ],
+
+
+        ];
         return self::$routeCommon;
     }
-
-
-
-
-
 
 
 }

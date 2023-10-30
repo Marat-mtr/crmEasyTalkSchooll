@@ -16,6 +16,15 @@ class CrmHome extends Controller {
 
 
 
+    public function notFound () {
+
+        $this->index();
+        echo '<br> Некоректне посилання! (crmHome)';
+
+    }
+
+
+
 
 
 
