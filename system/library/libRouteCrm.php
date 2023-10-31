@@ -9,7 +9,7 @@ class LibRouteCrm {
 
             'path' =>
                      [
-                         '' => 'crm/crmhome',
+                         ' ' => 'crm/crmhome',
                          'home' => 'crm/crmhome',
                          'notFound' => 'crm/crmhome',
                          'loginUser' => 'crm/account/users',

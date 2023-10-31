@@ -28,7 +28,8 @@ class LibRouteAdmin {
                            '' => 'index',
                            'home' => 'index',
                            'loginUser' => '',
-                           'registUser' => ''
+                           'registUser' => '',
+                           'notFound' => 'notFound'
                        ],
 
 

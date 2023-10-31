@@ -9,23 +9,22 @@ class LibRouteCommon {
         self::$routeCommon = [
 
             'path' =>
-                     [ '' => 'common/common',
-                       'home' => 'common/common',
-                       'notFound' => 'common/common'
+                     [
+                         'home' => 'common/common',
+                         'aboutUs' => 'common/aboutUs'
                      ],
 
             'controller' =>
                            [
-                               '' => 'common',
                                'home' => 'common',
-                               'notFound' => 'common'
+                               'aboutUs' => 'aboutUs'
                            ],
 
             'action' =>
                        [
-                           '' => 'index',
                            'home' => 'index',
-                           'notFound' => 'notFound'
+                           'notFound' => 'notFound',
+                           'aboutUs' => 'index'
                        ],
 
             'model' =>

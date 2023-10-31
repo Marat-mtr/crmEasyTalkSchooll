@@ -9,6 +9,8 @@ class AboutUs {
 
 
     public static function index() {
+
+        echo '<br> - require class AboutUs. action: index';
       
     }
 

@@ -14,6 +14,12 @@ class AdminHome extends Controller{
         echo '<br> - require class AdminHome. action: index';
     }
 
+    public function notFound () {
+
+        $this->index();
+        echo '<br> - некоректне посилання! (AdminHome)';
+    }
+
 
 
 

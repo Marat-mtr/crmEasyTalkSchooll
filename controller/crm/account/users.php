@@ -8,19 +8,19 @@ class Users extends Controller {
 
 
     public function __construct(){
-        echo '<br>' . ' - require class Users.  actions: __construct.  (exts Controller).' . '<br>';
+        echo '<br>' . ' - require class Users.  actions: __construct.' . '<br>';
 
     }
 
 
     public function indexer() {
-        echo '<br>' . ' - require class Users.  action: index.   (ext Controller). ' . '<br>';
+        echo '<br>' . ' - require class Users.  action: index. ' . '<br>';
 
 
     }
 
     public function loginUser () {
-        echo ' - req loginUser';
+        echo ' - require class Users, action: LoginUsers';
     }
 
 

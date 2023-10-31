@@ -1,10 +1,8 @@
 <?php
 
-namespace system\core;
-use system\library\mysqli;
 
-class odel
-{
+
+abstract class Model{
     protected $mysqls;
 
     public function __construct()
