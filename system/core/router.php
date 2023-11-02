@@ -141,6 +141,10 @@ class Router {
         $a -> $action();
 
 
+    }
+
+
+    public static function routeCommon () {
 
     }
  
