@@ -1,24 +1,23 @@
 <?php
 
 
-
-class Controller
-{
+class Controller {
 
     public function __construct()
     {
         echo '- require abstr class Controller. actions: __construct' . '<br>';
 
-
     }
 
 
-    public function indexsss()
+    public function control($f)
     {
-        echo '<br>' . ' - require class Conntroller. actions: idex()' . '<br>';
 
 
     }
+
+
+
 
 
 }

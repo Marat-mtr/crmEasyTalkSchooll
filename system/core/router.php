@@ -4,6 +4,7 @@
  */
 class Router {
 
+
     public function __construct() {
 
         spl_autoload_register(function ($class) {
@@ -20,6 +21,11 @@ class Router {
         });
 
         spl_autoload_extensions('.php');
+
+    }
+
+
+    public function indexRouting () {
 
 
         //$url = $_SERVER['QUERY_STRING'];
@@ -88,6 +94,7 @@ class Router {
             }
 
 
+
         } else if ($url[1] == 'admin') {
 
             LibRouteAdmin::routeAdmin();
@@ -136,18 +143,11 @@ class Router {
             require $require_file;
         }
 
-
         $a = new $controller();
         $a -> $action();
 
-
     }
 
-
-    public static function routeCommon () {
-
-    }
- 
 
 
 

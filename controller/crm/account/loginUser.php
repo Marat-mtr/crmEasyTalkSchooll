@@ -4,7 +4,7 @@
 
 //use system\core\Debuger;
 
-class LoginUser extends Users {
+class ModelAccountLoginuser {
     
 
     public function __construct() {
@@ -14,7 +14,7 @@ class LoginUser extends Users {
     
     
     
-    public function indexss() {
+    public function index() {
         echo '<br>' . ' - require class LoginUser. (ext Controller). actions: index' . '<br>';
 
         
